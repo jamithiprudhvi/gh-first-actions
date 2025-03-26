@@ -1,0 +1,49 @@
+name: Lint documentation
+on: push
+jobs:
+  lint-markdown:
+    name: Lint markdown files
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Lint markdown files
+        uses: markdownlint-cli/markdownlint-action@v0.3.0
+        with:
+          config: .markdownlint.yml
+          files: '**/*.md'
+  Test:
+    needs: lint-markdown
+    name: Test markdown files
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Test markdown files
+      run: |
+        echo "Testing markdown files"
+        echo "Test passed"
+        echo "Test failed"
+        exit 1 
+  Build:
+    needs: Test
+    name: build markdown files
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build markdown files
+      run: |
+        echo "Building markdown files"
+        echo "Build passed"
+        echo "Build failed"
+        exit 1 
+  Deploy:
+    needs: Build
+    name: Deploy markdown files
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Deploy markdown files
+      run: |
+        echo "Deploying markdown files"
+        echo "Deploy passed"
+        echo "Deploy failed"
+        exit 1     
