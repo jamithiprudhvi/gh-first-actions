@@ -16,6 +16,7 @@ jobs:
           run: npm test
 
   Deploy:
+    needs: test # This will make sure that the test job is run before the deploy job
     runs-on: ubuntu-latest
     steps:
       - name: Get code
